@@ -1,48 +1,55 @@
-
-@import url("https://fonts.googleapis.com/css2?family=Radio+Canada:wght@400;500;600;700&display=swap");
-
 body {
-    background-image: url("https://cdn.pixabay.com/photo/2018/03/17/19/36/connection-3234929_1280.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    font-family: "Radio Canada", sans-serif;
-  }
-  
-  body {
-    text-align: center;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
-h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
+header {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 50px;
 }
 
-.board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 5px;
-    margin-bottom: 20px;
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 35px;
 }
 
-.cell {
-    width: 100px;
-    height: 100px;
-    background-color: lightgray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-}
-.message {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+/* Define your row styling here */
+
+button.btn {
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 75px;
+  height: 75px;
+  font-size: 50px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button {
-  font-size: 18px;
-  padding: 10px 20px;
-  cursor: pointer;
+button.btn:hover {
+  background-color: #f0f0f0;
+  color: #fff;
 }
+
+button.btn:disabled {
+  color: black;
+  cursor: no-drop;
+}
+
+.result-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #333;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Add more styling for your result text and other elements as needed */
