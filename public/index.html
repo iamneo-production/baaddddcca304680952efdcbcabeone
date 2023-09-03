@@ -3,87 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            /* background-color: #110404; */
-            background-image: url("https://cdn.pixabay.com/photo/2018/03/17/19/36/connection-3234929_1280.jpg");
-        }
-
-        header {
-            text-align: center;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            font-size: 50px;
-        }
-
-        .box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 35px;
-        }
-
-        .row {
-            display: flex;
-            justify-content: center;
-        }
-
-        .cell {
-            width: 75px;
-            height: 75px;
-            margin: 35px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 50px;
-            font-weight: 500;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid #000;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .cell:hover {
-            background-color: rgba(255, 255, 255, 1);
-        }
-
-        .cell.disabled {
-            background-color: #f0f0f0;
-            cursor: not-allowed;
-        }
-
-        .result-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid #000;
-            max-width: 200px;
-            margin: 20px auto;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .reset {
-            text-align: center;
-        }
-
-        #reset-button {
-            border: 1px solid #000;
-            background-color: #000;
-            color: #fff;
-            cursor: pointer;
-            padding: 10px 20px;
-            font-size: 20px;
-            transition: background-color 0.3s, color 0.3s;
-            border: radius 50px;
-        }
-
-        #reset-button:hover {
-            background-color: #fff;
-            color: #000;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 </head>
 <body>
@@ -91,101 +11,28 @@
         <h1>Tic Tac Toe</h1>
     </header>
     <div class="box">
-        <!-- Create a 3x3 grid using nested div elements -->
         <div class="row">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
         </div>
         <div class="row">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
         </div>
         <div class="row">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
         </div>
     </div>
     <div class="result-container">
-        <p>Player X's turn</p>
+        <p class="result">Player X's Turn</p>
     </div>
-    <div class="reset">
-        <button id="reset-button">Reset</button>
+    <div class="reset-section">
+        <button id="reset-btn">Reset</button>
     </div>
-    <script>
-        // JavaScript code for the Tic Tac Toe game
-        let currentPlayer = 'X';
-        const board = ['', '', '', '', '', '', '', '', ''];
-        let gameOver = false;
-
-        function handleMove(cell, index) {
-            if (!cell.textContent && !gameOver) {
-                cell.textContent = currentPlayer;
-                board[index] = currentPlayer;
-
-                if (checkWin() || checkDraw()) {
-                    displayResult();
-                } else {
-                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                    updateTurnText();
-                }
-            }
-        }
-
-        function checkWin() {
-            const winPatterns = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-                [0, 4, 8], [2, 4, 6] // Diagonals
-            ];
-
-            for (const pattern of winPatterns) {
-                const [a, b, c] = pattern;
-                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                    gameOver = true;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        function checkDraw() {
-            return board.every(cell => cell !== '');
-        }
-
-        function displayResult() {
-            const resultContainer = document.querySelector('.result-container');
-            if (checkWin()) {
-                resultContainer.textContent = `Player ${currentPlayer} wins!`;
-            } else {
-                resultContainer.textContent = "It's a draw!";
-            }
-        }
-
-        function updateTurnText() {
-            const resultContainer = document.querySelector('.result-container');
-            resultContainer.textContent = `Player ${currentPlayer}'s turn`;
-        }
-
-        const cells = document.querySelectorAll('.cell');
-        cells.forEach((cell, index) => {
-            cell.addEventListener('click', () => {
-                handleMove(cell, index);
-            });
-        });
-
-        const resetButton = document.getElementById('reset-button');
-        resetButton.addEventListener('click', () => {
-            cells.forEach(cell => (cell.textContent = ''));
-            board.fill('');
-            currentPlayer = 'X';
-            gameOver = false;
-            updateTurnText();
-            document.querySelector('.result-container').textContent = "Let's play!";
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
